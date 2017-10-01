@@ -26,6 +26,7 @@ function BubbleChart(nodes, containerId, diameter){
 					.sum(function(d) { return d.value; })
 					.sort(function(a, b) { return b.value - a.value; });
 	}
+	
 	this.setNodes(nodes);
 	
 	this.setContainer = function(containerId){

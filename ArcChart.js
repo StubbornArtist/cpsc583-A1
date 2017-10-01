@@ -1,7 +1,6 @@
-function ArcChart(data, title, startAngle, endAngle, innerRadius, outerRadius, containerId){
+function ArcChart(data, startAngle, endAngle, innerRadius, outerRadius, containerId){
 	
 	this.data = data;
-	this.title = title;
 	this.startAngle = startAngle;
 	this.endAngle = endAngle;
 	this.innerRadius = innerRadius;
@@ -19,14 +18,23 @@ function ArcChart(data, title, startAngle, endAngle, innerRadius, outerRadius, c
 	
 	this.create = function(){
 		
+		var values = this.data.map(function(d){return d.value;});
+		var min = d3.min(values);
+		var max = d3.max(values);
+		var scale = d3.scaleLinear()
+					.domain([max, min])
+					.range([this.outerRadius, this.innerRadius]);
+					
+					
 		var pie = d3.pie()
 					.startAngle(this.startAngle)
 					.endAngle(this.endAngle)
-					.value(function(d){return d.value;});
+					.value(function(d){return d.value;})
+					.sort(null);
 					
 		var arc = d3.arc()
 					.innerRadius(this.innerRadius)
-					.outerRadius(this.outerRadius);
+					.outerRadius(function(d){ return scale(d.value);});
 					
 					
 		this.container.selectAll("g.arc")
@@ -36,16 +44,7 @@ function ArcChart(data, title, startAngle, endAngle, innerRadius, outerRadius, c
 			.attr("class", this.classes)
 			.attr("transform", "translate( " + this.outerRadius +  "," + this.outerRadius + ")")
 			.append("path")
-			.attr("d", arc)
-			.attr("id", this.title + "-path");
-			
-		this.container.append("text")
-			.append("textPath")
-			.attr("xlink:href", this.title + "-path")
-			.style("text-anchor", "middle")
-			.attr("startOffset", "50%")
-			.text(this.title);
-			
+			.attr("d", arc);	
 	}
 	
 	this.addClass = function(className){

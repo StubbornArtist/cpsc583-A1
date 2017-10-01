@@ -32,12 +32,10 @@
 	position : absolute;
 	width : auto;
 	height : auto;
-	font-size : 15px;
-	font-family: 'Indie Flower', cursive; 
-	color: #fff2e6; 
-	background : #ff8c1a;
-	border: 2px solid #fff2e6;
-	padding: 2px;
+	font-size : 15px; 
+	color : white;
+	background : #808080;
+	padding : 10px;
 	pointer-events: none;
 }
 
