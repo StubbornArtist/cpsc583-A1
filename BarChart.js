@@ -1,9 +1,13 @@
 function BarChart(data, containerId){
+	var yScale;
+	var xScale;
+	var height;
+	var width;
 	
 	this.setContainer = function(containerId){
 		this.container = d3.select(containerId);
-		this.height = this.container.attr("height");
-		this.width = this.container.attr("width");
+		height = +this.container.attr("height");
+		width = +this.container.attr("width");
 	}
 	
 	this.setContainer(containerId);
@@ -11,12 +15,14 @@ function BarChart(data, containerId){
 	this.setData = function(data){
 		this.data = data;
 		
-		this.yScale = d3.scaleLinear()
-		.range([0, this.height])
-		.domain([0,d3.max(data, function(d){return d.value;})]);
+		var max = d3.max(this.data.map(function(d){return d.value;}));
+		yScale = d3.scaleLinear()
+		.range([height, 0])
+		.domain([0,max]);
 		
-		this.xScale = d3.scaleBand()
-		.rangeRound([0, this.width])
+		
+		xScale = d3.scaleBand()
+		.rangeRound([0, width])
 		.domain(data.map(function(d){return d.name;}));
 	}
 	
@@ -28,11 +34,12 @@ function BarChart(data, containerId){
 		.data(this.data)
 		.enter()
 		.append("g")
-		.attr("transform", function(d){ return "translate(" + this.xScale(d.name) + ",0)";})
+		.attr("transform", function(d){ return "translate(" + xScale(d.name) + ",0)";})
+		.attr("class", "bar")
 		.append("rect")
-		.attr("y", function(d){return this.yScale(d.value)})
-		.attr("height", function(d){ return this.height - yScale(d.value);})
-		.attr("width", this.xScale.range());	
+		.attr("y", function(d){return yScale(d.value);})
+		.attr("height", function(d){ return height - yScale(d.value); })
+		.attr("width", xScale.bandwidth())
 		
 	}
 }

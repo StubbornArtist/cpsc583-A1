@@ -1,6 +1,7 @@
 function BubbleChart(nodes, containerId, diameter){
 	
 	this.diameter = diameter;
+	this.classes = "bubble";
 	
 	this.create = function(){
 		
@@ -10,21 +11,14 @@ function BubbleChart(nodes, containerId, diameter){
 		
 		var leaves = bubblePack(this.root).leaves();
 		
-		this.container.selectAll(".node")
+		this.container.selectAll(".bubble")
 		.data(leaves)
 		.enter()
 		.append("g")
-		.attr("class", "node")
+		.attr("class", this.classes)
 		.attr("transform", function(d){ return "translate(" + d.x + "," + d.y + ")";})
 		.append("circle")
-		.attr("r", function(d){return d.r;})
-		.on("mouseover", function(d,i){ 
-			d3.select(this).style("stroke", "#ffbf80");
-			d3.select(this).style("stroke-width", 5);
-		})
-		.on("mouseout", function(d,i){
-			d3.select(this).style("stroke-width", 0); 
-		});					
+		.attr("r", function(d){return d.r;});				
 	}
 	
 	this.setNodes = function(nodes){
@@ -39,4 +33,9 @@ function BubbleChart(nodes, containerId, diameter){
 	}
 	
 	this.setContainer(containerId);
+	
+	
+	this.addClass = function(className){
+		this.classes+= " " + className;
+	}
 }	

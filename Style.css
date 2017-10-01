@@ -1,0 +1,45 @@
+.main-bubble {
+	fill : #ff8c1a;
+}
+
+#container{
+	text-align : center;
+}
+
+.arc {
+	stroke-width : 2;
+}
+
+.column-arc{	
+	fill : #0066ff;
+	stroke : #66a3ff;
+}
+
+.row-arc{
+	fill : #ff66ff;
+	stroke : #ff99ff;
+}
+
+.title{
+	text-align : center;
+	color : #ff8c1a;
+	font-family: 'Indie Flower', cursive;
+	font-size: 50px;
+}
+.tooltip{
+	opacity : 0;
+	text-align : left;
+	position : absolute;
+	width : auto;
+	height : auto;
+	font-size : 15px;
+	font-family: 'Indie Flower', cursive; 
+	color: #fff2e6; 
+	background : #ff8c1a;
+	border: 2px solid #fff2e6;
+	padding: 2px;
+	pointer-events: none;
+}
+
+
+
