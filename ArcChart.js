@@ -34,7 +34,7 @@ function ArcChart(data, startAngle, endAngle, innerRadius, outerRadius, containe
 		var arc = d3.arc()
 					.innerRadius(this.innerRadius)
 					.outerRadius(function(d){ return scale(d.value);});
-									
+											
 		this.container.selectAll("g.arc")
 			.data(pie(this.data))
 			.enter()
@@ -43,11 +43,35 @@ function ArcChart(data, startAngle, endAngle, innerRadius, outerRadius, containe
 			.attr("transform", "translate( " + this.outerRadius +  "," + this.outerRadius + ")")
 			.append("path")
 			.attr("d", arc);
+
 	}
 	
 	this.addClass = function(className){
 		
 		this.classes += " " + className;
 		
+	}
+	
+	this.addTitle = function(title){
+		var arc = d3.arc()
+						.innerRadius(this.outerRadius + 30)
+						.outerRadius(this.outerRadius )
+						.startAngle(d3.max([this.endAngle, this.startAngle]))
+						.endAngle(d3.min([this.startAngle, this.endAngle]));
+						
+		var g = this.container.append("g")
+						.attr("transform", "translate(" + this.outerRadius + "," + this.outerRadius + ")");
+						
+						g.append("path")
+						.attr("d", arc)
+						.attr("id", "path_" + title)
+						.style("fill", "none");
+						
+						g.append("text")
+						.append("textPath")
+						.attr("xlink:href", "#path_" + title)
+						.attr("startOffset", "75%")
+						.text(title);
+					  
 	}
 }

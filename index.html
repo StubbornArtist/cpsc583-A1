@@ -14,36 +14,41 @@
 		<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	</head>
 	<body>
-	<div class = "centered-div">
+		<div id = "title-div">
 			<h1 class="title info">Behavior Situational Appropriatness</h1>
-	</div>
-	<div id = "legend-div">
-			<svg width = "800" height = "150">
-				<g class="legend" transform = "translate(100, 70)">
-					<g transform = "translate(-35, -50)">
-						<text>Appropriatness Scale</text>
-					</g>
-					<g transform = "translate(100, 0)">
-						<circle class ="main-bubble" r="5"></circle>
-						<g transform = "translate(-20, 40)">
-							<text>Less</text>
-						</g>
-					</g>
-					<g>
-						<circle class = "main-bubble" r ="20"></circle>
-						<g transform = "translate(-20, 40)">
-							<text>More</text>
-						</g>
-					</g>
-				</g>
-			</svg>
 		</div>
-		<div class = "centered-div">
-			<svg width="800" height="800">
-				<g id="chart1"></g>
-				<g id ="chart2" transform = "translate(125, 125)"></g>
-				<g id="chart3"></g>
-			</svg>
+		<div id = "main-div">
+			<div>
+				<svg width = "500" height = "150">
+					<g class="legend" transform = "translate(100, 70)">
+						<g transform = "translate(-25, -50)">
+							<text>Appropriatness Scale</text>
+						</g>
+						<g transform = "translate(200, 0)">
+							<circle class ="main-bubble" r="5"></circle>
+							<g transform = "translate(-20, 50)">
+								<text>Very Inappropriate</text>
+							</g>
+						</g>
+						<g transform = "translate(30, 0)">
+							<rect width = "145" height= "5" ></circle>
+						</g>
+						<g>
+							<circle class = "main-bubble" r ="20"></circle>
+							<g transform = "translate(-60, 50)">
+								<text>Very Appropriate</text>
+							</g>
+						</g>
+					</g>
+				</svg>
+			</div>
+			<div>
+				<svg width="900" height="800">
+					<g id="chart1" transform = "translate(50, 0)"></g>
+					<g id ="chart2" transform = "translate(175, 125)"></g>
+					<g id="chart3" transform = "translate(50, 0)"></g>
+				</svg>
+			</div>
 		</div>
 	</body>
 </html>

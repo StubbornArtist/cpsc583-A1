@@ -1,14 +1,23 @@
-.main-bubble {
-	fill : #ff8c1a;
+
+#main-div div{
+	float : left;
 }
-.centered-div{
-	text-align : center;
+
+#chart1 text {
+	font-size: 30px;
+	fill: #0066ff;
 }
-.legend-div{
-	text-align : left;
+
+#chart3 text{
+	font-size: 30px;
+	fill: #ff99ff;
 }
-.legend{
+
+text{
 	font-family: 'Indie Flower', cursive;
+}
+
+.legend{
 	font-size: 25px;
 	fill: #ff8c1a;
 }
@@ -24,6 +33,10 @@
 .row-arc{
 	fill : #ff66ff;
 	stroke : #ff99ff;
+}
+
+.main-bubble {
+	fill : #ff8c1a;
 }
 
 .title{

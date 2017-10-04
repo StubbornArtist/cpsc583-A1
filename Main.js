@@ -69,7 +69,7 @@ function setUpStyles(){
 		var data = arguments["0"].data;
 		
 		tooltip.show("<p><span>" + data.name +
-			"<br/>Appropriatness : " + data.value.toFixed(2) + 
+			"<br/>Mean Appropriatness : " + data.value.toFixed(2) + 
 			"</p>");
 	});
 	
@@ -125,6 +125,7 @@ function init (){
 		-0.3, -Math.PI + 0.3, (MAX_DIAMETER - 200)/2, MAX_DIAMETER/2, '#chart1');
 		columnsArcChart.addClass("column-arc hover");
 		columnsArcChart.create();
+		columnsArcChart.addTitle("Behaviors");
 		
 		var bubbleChart = new BubbleChart(data.pairs(), '#chart2', MAX_DIAMETER - 250);
 		bubbleChart.addClass("main-bubble hover");
@@ -134,6 +135,7 @@ function init (){
 		0.3 , Math.PI - 0.3,  (MAX_DIAMETER - 200)/2, MAX_DIAMETER/2, '#chart3');
 		rowsArcChart.addClass("row-arc hover");
 		rowsArcChart.create();
+		rowsArcChart.addTitle("Situations");
 			
 		setUpStyles();
 	});	
