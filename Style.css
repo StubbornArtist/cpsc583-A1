@@ -1,11 +1,17 @@
 .main-bubble {
 	fill : #ff8c1a;
 }
-
-#container{
+.centered-div{
 	text-align : center;
 }
-
+.legend-div{
+	text-align : left;
+}
+.legend{
+	font-family: 'Indie Flower', cursive;
+	font-size: 25px;
+	fill: #ff8c1a;
+}
 .arc {
 	stroke-width : 2;
 }
@@ -21,9 +27,9 @@
 }
 
 .title{
-	text-align : center;
-	color : #ff8c1a;
 	font-family: 'Indie Flower', cursive;
+	color : #ff8c1a;
+	text-align : center;
 	font-size: 50px;
 }
 .tooltip{
@@ -38,6 +44,7 @@
 	padding : 10px;
 	pointer-events: none;
 }
+
 
 
 

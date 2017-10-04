@@ -23,8 +23,7 @@ function ArcChart(data, startAngle, endAngle, innerRadius, outerRadius, containe
 		var max = d3.max(values);
 		var scale = d3.scaleLinear()
 					.domain([max, min])
-					.range([this.outerRadius, this.innerRadius]);
-					
+					.range([this.outerRadius, this.innerRadius + 5]);
 					
 		var pie = d3.pie()
 					.startAngle(this.startAngle)
@@ -35,8 +34,7 @@ function ArcChart(data, startAngle, endAngle, innerRadius, outerRadius, containe
 		var arc = d3.arc()
 					.innerRadius(this.innerRadius)
 					.outerRadius(function(d){ return scale(d.value);});
-					
-					
+									
 		this.container.selectAll("g.arc")
 			.data(pie(this.data))
 			.enter()
@@ -44,7 +42,7 @@ function ArcChart(data, startAngle, endAngle, innerRadius, outerRadius, containe
 			.attr("class", this.classes)
 			.attr("transform", "translate( " + this.outerRadius +  "," + this.outerRadius + ")")
 			.append("path")
-			.attr("d", arc);	
+			.attr("d", arc);
 	}
 	
 	this.addClass = function(className){
