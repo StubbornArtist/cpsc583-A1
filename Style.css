@@ -21,6 +21,13 @@ text{
 	font-size: 25px;
 	fill: #ff8c1a;
 }
+.legend line{
+	stroke: #ff8c1a;
+}
+.arrow{
+	stroke : #ff8c1a;
+	fill : #ff8c1a;
+}	
 .arc {
 	stroke-width : 2;
 }
@@ -35,8 +42,33 @@ text{
 	stroke : #ff99ff;
 }
 
-.main-bubble {
+.row-arc-select{
+	fill: #ff99ff;
+	stroke:#ff66ff;
+}
+
+.column-arc-select{
+	fill : #66a3ff;
+	stroke : #0066ff;
+}
+.mouseover{
+	opacity : 0.5;
+	
+}
+.bubble {
 	fill : #ff8c1a;
+}
+
+.row-bubble{
+	fill : #ff66ff;
+}
+
+.column-bubble{
+	fill : #0066ff;
+}
+
+.union-bubble{
+	fill : url(#gradient);
 }
 
 .title{
@@ -57,7 +89,11 @@ text{
 	padding : 10px;
 	pointer-events: none;
 }
-
-
+.right-gradient{
+	stop-color: #ff66ff;
+}
+.left-gradient{
+	stop-color: #0066ff;	
+}
 
 

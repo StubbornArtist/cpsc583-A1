@@ -2,33 +2,49 @@
 const MAX_DIAMETER = 800;
 
 function clearBubbles(){
-	d3.selectAll('.bubble').style("fill", "#ff8c1a");
+	d3.selectAll('.bubble').classed("row-bubble column-bubble union-bubble", false);
 }
-function clearArcSelection(ele){
-	if(ele != null){
-		d3.selectAll('.arc').filter(function(d){return d.data.name == ele;})
-		.style("stroke-width", 2);	
-	}	
+
+function clearColumnArcSelection(){
+	d3.selectAll('.column-arc').classed("column-arc-select", false);
 }
+
+function clearRowArcSelection(){
+	d3.selectAll('.row-arc').classed("row-arc-select", false);	
+}
+
+function selectRow(name){
+	d3.selectAll('.row-arc').filter(function(d){return d.data.name == name;})
+	.classed("row-arc-select", true);
+}
+
+function selectColumn(name){
+	d3.selectAll('.column-arc').filter(function(d){return d.data.name == name;})
+	.classed("column-arc-select", true);
+}
+
 function colorSelectedRow(rowName){
 	if(rowName != null){
 		d3.selectAll('.bubble').filter(function(d){return d.data.row == rowName;})
-		.style("fill", "#ff66ff");
+		.classed("row-bubble", true);
 	}
 }
+
 function colorSelectedColumn(columnName){
 	if(columnName != null){
 		d3.selectAll('.bubble').filter(function(d){return d.data.column == columnName;})
-		.style("fill", "#0066ff");
+		.classed("column-bubble", true);
 	}
 }
 
 function colorUnion(columnName, rowName){
 	if(columnName != null && rowName != null){
 		d3.selectAll('.bubble').filter(function(d){return d.data.column == columnName && d.data.row == rowName;})
-		.style("fill", "#9966FF");
+		.classed("union-bubble", true);
 	}
 }
+
+
 function setUpStyles(){
 	
 	var row = null;
@@ -46,13 +62,13 @@ function setUpStyles(){
 	
 	d3.selectAll('.hover')
 	.on("mouseout", function(){
-		d3.select(this).style("opacity", 1);
+		d3.select(this).classed("mouseover", false);
 		tooltip.hide();
 	});
 		
 	d3.selectAll('.bubble')
 	.on("mouseover", function(){
-		d3.select(this).style("opacity", 0.5);
+		d3.select(this).classed("mouseover", true);
 		
 		var data = arguments["0"].data;
 		
@@ -64,7 +80,7 @@ function setUpStyles(){
 		
 	d3.selectAll('.arc')
 	.on("mouseover", function(){
-		d3.select(this).style("opacity", 0.5);
+		d3.select(this).classed("mouseover", true);
 		
 		var data = arguments["0"].data;
 		
@@ -76,38 +92,36 @@ function setUpStyles(){
 	d3.selectAll('.row-arc')
 	.on("mousedown" , function(){	
 		clearBubbles();
-		clearArcSelection(row);
+		clearRowArcSelection();
 		var name = arguments["0"].data.name;
 		if(row != null && row == name){
 			colorSelectedColumn(column);
 			row = null;
-			clearArcSelection(name);
 		}
 		else{
 			colorSelectedRow(name);
 			colorSelectedColumn(column);
 			colorUnion(column, name);
 			row = name;
-			d3.select(this).style("stroke-width", 5);
+			selectRow(name);
 		}
 	});
 	
 	d3.selectAll('.column-arc')
 	.on("mousedown" , function(){	
 		clearBubbles();
-		clearArcSelection(column);
+		clearColumnArcSelection();
 		var name = arguments["0"].data.name;
 		if(column != null && column == name){
 			colorSelectedRow(row);
 			column = null;
-			clearArcSelection(name);
 		}
 		else{
 			colorSelectedColumn(name);
 			colorSelectedRow(row);
 			colorUnion(name, row);
 			column = name;
-			d3.select(this).style("stroke-width", 5);
+			selectColumn(name);
 		}
 	});
 
@@ -128,7 +142,7 @@ function init (){
 		columnsArcChart.addTitle("Behaviors");
 		
 		var bubbleChart = new BubbleChart(data.pairs(), '#chart2', MAX_DIAMETER - 250);
-		bubbleChart.addClass("main-bubble hover");
+		bubbleChart.addClass("hover");
 		bubbleChart.create();
 		
 		var rowsArcChart = new ArcChart(data.rows(), 

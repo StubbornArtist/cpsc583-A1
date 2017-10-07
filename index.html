@@ -20,6 +20,16 @@
 		<div id = "main-div">
 			<div>
 				<svg width = "500" height = "150">
+					<defs>
+						<marker id ="endarrow" markerWidth="15" markerHeight="15" 
+								refX="2" refY="7" >
+							<polyline class ="arrow" points = "1,1 14,7.5 1,14">
+						</marker>
+						<marker id ="startarrow" markerWidth="15" markerHeight="15" 
+								refX="2" refY="7" orient="-180">
+							<polyline class ="arrow" points = "1,1 14,7.5 1,14">
+						</marker>
+					</defs>
 					<g class="legend" transform = "translate(100, 70)">
 						<g transform = "translate(-25, -50)">
 							<text>Appropriatness Scale</text>
@@ -31,7 +41,9 @@
 							</g>
 						</g>
 						<g transform = "translate(30, 0)">
-							<rect width = "145" height= "5" ></circle>
+							<line x1 = "5" y1 = "0"  x2 = "145" y2 = "0"
+							marker-end=url(#endarrow) 
+							marker-start=url(#startarrow)></rect>
 						</g>
 						<g>
 							<circle class = "main-bubble" r ="20"></circle>
@@ -44,11 +56,17 @@
 			</div>
 			<div>
 				<svg width="900" height="800">
+					<defs>
+						<linearGradient id ="gradient" x1 = "0%" x2 = "80%" y1 = "0%" y2 = "0%">
+							<stop offset="0%" class ="left-gradient" />
+							<stop offset="100%" class="right-gradient"/>
+						</linearGradient>
+					</defs>
 					<g id="chart1" transform = "translate(50, 0)"></g>
 					<g id ="chart2" transform = "translate(175, 125)"></g>
 					<g id="chart3" transform = "translate(50, 0)"></g>
 				</svg>
-			</div>
+			</div>			
 		</div>
 	</body>
 </html>
